@@ -1,10 +1,47 @@
+$(document).ready(pageReady);
+
 function pageReady() {
-	var computerChoice;
 	var userChoice;
+	var computerChoice;
 	var outcome;
-	var userWins = 0;
-	var computerWins = 0;
+	var userChoiceWins = 0;
+	var computerChoiceWins = 0;
 }
+
+$(".play-button").click(playClick);
+	function playClick() {
+	  $(".play-button").slideUp();
+	  $(".game-container").slideDown();
+	  computerPlay();
+	}
+
+	$(".play-again").click(againClick);
+	function againClick() {
+	  clearText();
+	  $(".results-container").slideDown("slow", function() {
+	    $(".choices-container").slideDown();    
+	  });
+	  
+	  computerPlay();
+	}  
+
+	$(".rock").click(rockClick)
+	function rockClick() {
+	  userChoice = "rock";
+	  getResult();
+	}
+
+	$(".paper").click(paperClick)
+	function paperClick() {
+	  userChoice = "paper";
+	  getResult();
+	}
+
+	$(".scissors").click(scissorsClick)
+	function scissorsClick() {
+	  userChoice = "scissors";
+	  getResult();
+	}
 
 // Generates random computer choice
 function computerPlay() {
@@ -23,14 +60,30 @@ function getRandomInt(min, max) {
 computerPlay();
 console.log(computerChoice);
 
-
 function getResult(p1, p2) {
 
-// Key/Logic for Rock, Paper, Scissors 
-  if (p1 === p2) { return 'TIE'; }
-  if ((p1 === 'scissors' && p2 === 'rock') || (p1 === 'rock' && p2 === 'paper') || (p1 === 'paper' && p2 === 'scissors')) { return 'LOSS'; }
+  if (userChoice === computerChoice) { return 'TIE'; }
+  if ((userChoice === 'scissors' && computerChoice === 'rock') || (userChoice === 'rock' && computerChoice === 'paper') || (userChoice === 'paper' && computerChoice === 'scissors')) { return 'LOSS'; }
   else {  return 'WIN'; }
-}
+
+	  $(".user-choice").text(userChoice);
+	  $(".computer-choice").text(computerChoice);
+	  $(".results").text(outcome);  
+	  $("#computer-tally").text(computerWins);  
+	  $("#user-tally").text(userWins);  
+	  
+	  $(".choices-container").slideUp("slow", function() {
+	    $(".results-container").slideDown();
+	  });
+
+	}
+
+// Clears choice and results text
+	function clearText() {
+	  $(".user-choice").text("");
+	  $(".computer-choice").text("");
+	  $(".results").text("");
+	}
 
 // Show choices
 $(document).ready(function() {
@@ -39,7 +92,3 @@ $(document).ready(function() {
 	});
 });
 
-// When clicking on rock, have computer make a random choice
-$( ".rock" ).click(function() {
-  $( "getRandomInt" ).click();
-});
