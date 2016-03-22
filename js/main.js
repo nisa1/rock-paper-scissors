@@ -1,4 +1,10 @@
-var computerChoice;
+function pageReady() {
+	var computerChoice;
+	var userChoice;
+	var outcome;
+	var userWins = 0;
+	var computerWins = 0;
+}
 
 // Generates random computer choice
 function computerPlay() {
