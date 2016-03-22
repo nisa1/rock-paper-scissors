@@ -4,11 +4,9 @@ function pageReady() {
 	var userChoice;
 	var computerChoice;
 	var outcome;
-	var userWins = 0;
-	var computerWins = 0;
-}
 
 $(".play-button").click(playClick);
+	
 	function playClick() {
 	  $(".play-button").slideUp();
 	  $(".game-container").slideDown();
@@ -64,14 +62,12 @@ function getResult(userChoice, computerChoice) {
 
 
   if (userChoice === computerChoice) { outcome = 'TIE'; }
-  if ((userChoice === 'scissors' && computerChoice === 'rock') || (userChoice === 'rock' && computerChoice === 'paper') || (userChoice === 'paper' && computerChoice === 'scissors')) { outcome = 'LOSS'; }
+  else if ((userChoice === 'scissors' && computerChoice === 'rock') || (userChoice === 'rock' && computerChoice === 'paper') || (userChoice === 'paper' && computerChoice === 'scissors')) { outcome = 'LOSS'; }
   else { outcome = 'WIN'; }
 
 	  $(".user-choice").text(userChoice);
 	  $(".computer-choice").text(computerChoice);
 	  $(".results").text(outcome);  
-	  $("#computer-tally").text(computerWins);  
-	  $("#user-tally").text(userWins);  
 	  
 	  $(".choices-container").slideUp("slow", function() {
 	    $(".results-container").slideDown();
@@ -91,5 +87,9 @@ $(document).ready(function() {
 	$('.play-button').click(function() { 
 		$('.game-container').show();
 	});
+
+
+
 });
 
+}s
