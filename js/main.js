@@ -4,8 +4,8 @@ function pageReady() {
 	var userChoice;
 	var computerChoice;
 	var outcome;
-	var userChoiceWins = 0;
-	var computerChoiceWins = 0;
+	var userWins = 0;
+	var computerWins = 0;
 }
 
 $(".play-button").click(playClick);
@@ -28,19 +28,19 @@ $(".play-button").click(playClick);
 	$(".rock").click(rockClick)
 	function rockClick() {
 	  userChoice = "rock";
-	  getResult();
+	  getResult(userChoice, computerChoice);
 	}
 
 	$(".paper").click(paperClick)
 	function paperClick() {
 	  userChoice = "paper";
-	  getResult();
+	  getResult(userChoice, computerChoice);
 	}
 
 	$(".scissors").click(scissorsClick)
 	function scissorsClick() {
 	  userChoice = "scissors";
-	  getResult();
+	  getResult(userChoice, computerChoice);
 	}
 
 // Generates random computer choice
@@ -58,13 +58,14 @@ function getRandomInt(min, max) {
 
 // Demonstration of how to generate random computer choice.
 computerPlay();
-console.log(computerChoice);
+// console.log(computerChoice);
 
-function getResult(p1, p2) {
+function getResult(userChoice, computerChoice) {
 
-  if (userChoice === computerChoice) { return 'TIE'; }
-  if ((userChoice === 'scissors' && computerChoice === 'rock') || (userChoice === 'rock' && computerChoice === 'paper') || (userChoice === 'paper' && computerChoice === 'scissors')) { return 'LOSS'; }
-  else {  return 'WIN'; }
+
+  if (userChoice === computerChoice) { outcome = 'TIE'; }
+  if ((userChoice === 'scissors' && computerChoice === 'rock') || (userChoice === 'rock' && computerChoice === 'paper') || (userChoice === 'paper' && computerChoice === 'scissors')) { outcome = 'LOSS'; }
+  else { outcome = 'WIN'; }
 
 	  $(".user-choice").text(userChoice);
 	  $(".computer-choice").text(computerChoice);
